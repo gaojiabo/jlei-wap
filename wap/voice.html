@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!-- saved from url=(0023)https://wap.bjyltf.com/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>建磊之声</title>
+	<meta name="apple-touch-fullscreen" content="YES">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta http-equiv="Expires" content="-1">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<link rel="stylesheet" href=" /static/css/mreset.css">
+	<link rel="stylesheet" href=" /static/css/sy-mindex-08-27.css">
+	<link rel="stylesheet" href=" /static/css/index.css">
+	<style type="text/css">
+		.cont{ position: relative; }
+		.back_a{ position: absolute; top: 16px; left: 12px; }
+		.top_b{ width: 100%; }
+		.back_a img{ width: 50%; }
+		.deta_c{ width: 90%; margin: 0 auto; margin-top: 20px; } 
+	</style>
+</head>
+<!--style="touch-action: none;"-->
+	<body >
+		<div class="cont">
+			<a href="javascript:history.back(-1)" class="back_a">
+				<img src=" /static/image/back.png">
+			</a>
+			<img src=" /static/image/jl_list.jpg" class="top_b"> 
+			<div class="deta_c">
+				<ul class="jl_list">
+					<!--<a href="../jlvoice/voice1.html">-->
+						<!--<li class="jl_item">-->
+							<!--<img class="jl_img" src="/static/image/jl_1.jpg">-->
+							<!--<div class="jl_con">-->
+								<!--<p class="jl_sub">建磊国际开创行业全新未来，建千秋大厦，磊精彩人生</p>-->
+							<!--</div>-->
+						<!--</li>-->
+					<!--</a>-->
+					<!--<a href="建磊之声2.html">-->
+						<!--<li class="jl_item">-->
+							<!--<img class="jl_img" src=" /static/image/jl_2.jpg">-->
+							<!--<div class="jl_con">-->
+								<!--<p class="jl_sub">建磊国际打造精品工程建筑，扮靓美丽城市</p>-->
+							<!--</div>-->
+						<!--</li>-->
+					<!--</a>-->
+					<!--<a href="建磊之声3.html">	-->
+						<!--<li class="jl_item">-->
+							<!--<img class="jl_img" src=" /static/image/jl_3.jpg">-->
+							<!--<div class="jl_con">-->
+								<!--<p class="jl_sub">建磊走过二十余载峥嵘岁月迎接美好未来</p>-->
+							<!--</div>-->
+						<!--</li>-->
+					<!--</a>-->
+					<!--<a href="建磊之声4.html">-->
+						<!--<li class="jl_item">-->
+							<!--<img class="jl_img" src=" /static/image/jl_4.jpg">-->
+							<!--<div class="jl_con">-->
+								<!--<p class="jl_sub">建磊国际提升实力加速发展，推动行业成熟度</p>-->
+							<!--</div>-->
+						<!--</li>-->
+					<!--</a>-->
+
+				</ul>
+			</div>
+		</div>
+	</body>
+<script type="text/javascript" src="/static/js/jquery.js"></script>
+<script type="text/javascript" src="/static/js/mui.min.js"></script>
+	<script type="text/javascript">
+//		if(window.localStorage.getItem('html')){
+//            var url_pre = document.referrer;
+//            console.log(url_pre)
+//		}
+        //滚动加载
+        var page = 1;
+        window.addEventListener('swipeup',function(){
+            var doc_height = $(document).height();
+            var scroll_top = $(document).scrollTop();
+            var window_height = $(window).height();
+            if(scroll_top + window_height >= doc_height){
+                page ++;
+                //console.log(page)
+                initPage(page);
+            }
+        });
+        initPage(1)
+        function initPage(page) {
+            $.ajax({
+                url:"api/voice.php?page="+page,
+                type:"get",
+                dataType:"json",
+                success:function (phpdata) {
+                    console.log(phpdata)
+                    if(!phpdata.voice.length){
+                        if(!$('#myl').length){
+                            $('.jl_list').append('<p id="myl" style="text-align: center;color: #cccccc;line-height: 20px; margin-bottom: 8px;">没有更多了</p>');
+                        }
+
+                         return false;
+                    }
+                    var shtml = '';
+                    $.each(phpdata.voice, function (i, value) {
+                        //shtml = shtml + '<a href="../jlvoice/voice1.html?id='+value.id+'">'+
+                        shtml = shtml + '<a href="javascript:void(0);">'+
+                            '<li class="jl_item" data-id="'+value.id+'">'+
+                            '<img class="jl_img" src="'+value.thumb+'">'+
+                            '<div class="jl_con">'+
+                            '<p class="jl_sub">'+value.title+'</p>'+
+                            '</div>'+
+                            '</li>'+
+                            '</a>'
+                    })
+                    if(shtml){
+                        $('.jl_list').append(shtml);
+                    }
+
+                },error:function () {
+                    console.log('error')
+                }
+            })
+        }
+        $('.jl_list').on('click', '.jl_item',function () {
+            var allhtml = $('.jl_list').html();
+            //window.localStorage.setItem('html',allhtml);
+            //window.localStorage.setItem('page',page);
+            window.location.href = '../jlvoice/voice1.html?id=' + $(this).attr('data-id');
+        })
+
+	</script>
+</html>

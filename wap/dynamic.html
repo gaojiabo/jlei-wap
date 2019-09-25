@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- saved from url=(0023)https://wap.bjyltf.com/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>公司动态</title>
+	<meta name="apple-touch-fullscreen" content="YES">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta http-equiv="Expires" content="-1">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<link rel="stylesheet" href=" /static/css/mreset.css">
+	<link rel="stylesheet" href=" /static/css/sy-mindex-08-27.css">
+	<style type="text/css">
+		.cont{ position: relative; }
+		.back_a{ position: absolute; top: 16px; left: 12px; }
+		.top_b{ width: 100%; }
+		.back_a img{ width: 50%; }
+		.deta_c{ width: 90%; margin: 0 auto; margin-top: 20px; }
+		.deta_c p{ margin-bottom: 10px; font-size: 14px; line-height: 24px; color: #848484; display: inline-block; width: 100%; }
+		i.dyn_d{ width: 6px; height: 6px; border-radius: 6px; background: #c9b78f; float: left; margin-top: 8px; margin-right: 10px; }
+		span.det_wz{ font-size: 14px; float: left; width: 94%; line-height: 24px; }
+	</style>
+</head>
+
+	<body>
+		<div class="cont">
+			<a href="javascript:history.back(-1)" class="back_a">
+				<img src=" /static/image/back.png">
+			</a>
+			<img src=" /static/image/com_dt.jpg" class="top_b"> 
+			<div class="deta_c">
+				<!--<p><i class="dyn_d"></i><span class="det_wz">我公司被批准为北京市建筑装饰协会第八届理事单位。</span></p>-->
+				<!--<p><i class="dyn_d"></i><span class="det_wz">我公司参与承建的丰台区槐房村NY-019地块绿隔产业用房项目1#商业楼室内装饰工程（二标段）工程被评为2017-2018年度北京市建筑装饰优质工程。</span></p>-->
+				<!--<p><i class="dyn_d"></i><span class="det_wz">我公司被评为企业信用等级2018年度AAA级企业。</span></p>-->
+				<!--<p><i class="dyn_d"></i><span class="det_wz">我公司荣获2017年优秀单位称号。</span></p>-->
+				<!--<p><i class="dyn_d"></i><span class="det_wz">我公司参与承建的中国人寿研发中心一期工程荣获2016-2017年度鲁班奖。</span></p>-->
+			</div>
+		</div>
+
+	</body>
+
+</html>
+<script type="text/javascript" src="/static/js/jquery.js"></script>
+<script type="text/javascript" src="/static/js/mui.min.js"></script>
+<script type="text/javascript">
+    $.ajax({
+        url:"api/dynamic.php",
+        type:"get",
+        dataType:"json",
+        success:function (phpdata) {
+            var shtml = '';
+            $.each(phpdata.data, function (i, value) {
+                shtml = shtml + '<p><i class="dyn_d"></i><span class="det_wz">'+value+'</span></p>'
+            })
+            if(shtml){
+                $('.deta_c').append(shtml);
+            }
+
+        },error:function () {
+            console.log('error')
+        }
+    })
+</script>
