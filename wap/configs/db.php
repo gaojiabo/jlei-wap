@@ -37,5 +37,6 @@ class db
         unset($this->conn);
     }
 }
+#统一修改数据库配置的地方
 $db = new db('127.0.0.1','root','root','jianlei');
 return $db;
