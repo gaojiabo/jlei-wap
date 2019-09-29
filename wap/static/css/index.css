@@ -36,7 +36,7 @@ li.cur_a a{ color: #de5439; }
 .our_more_pic{text-align: center;margin-bottom: 16px;}
 .our_more_pic img{width: 24px;}
 .about_box{background:#FFFFFF; }
-.about_us_con p{text-indent: 2em;color: #666666; text-align: justify; line-height: 20px; font-size: 14px;}
+.about_us_con p{text-indent: 2em;color: #4e4e4e; text-align: justify; line-height: 20px; font-size: 14px;}
 .tag_post{position: relative; top: -92px; height: 0;display: block;}
 .our_advantage{color: rgba(32,40,51,.5);}
 /* 荣誉奖项 */
