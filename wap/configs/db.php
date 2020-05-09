@@ -38,5 +38,5 @@ class db
     }
 }
 #统一修改数据库配置的地方
-$db = new db('127.0.0.1','root','root','jianlei');
+$db = new db('127.0.0.1','rot','rot','');
 return $db;
