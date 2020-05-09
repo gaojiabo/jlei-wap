@@ -37,5 +37,5 @@ class db
         unset($this->conn);
     }
 }
-$db = new db('127.0.0.1','root','root','jianlei');
+$db = new db('127.0.0.1','rot','rot','j');
 return $db;
